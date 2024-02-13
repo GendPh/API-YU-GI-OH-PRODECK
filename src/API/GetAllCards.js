@@ -80,6 +80,10 @@ export async function GetBanList(ban_list) {
   return json;
 }
 export async function GetCardSetList() {
-  const json = await fetchApi(`https://db.ygoprodeck.com/api/v7/cardsets.php`);
-  return json;
+  try {
+    const json = await fetchApi(`https://db.ygoprodeck.com/api/v7/cardsets.php`);
+    return json;
+  } catch (er) {
+    return { "error": er };
+  }
 }

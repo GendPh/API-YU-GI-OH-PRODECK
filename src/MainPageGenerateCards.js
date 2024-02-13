@@ -1,4 +1,4 @@
-import { CardElement } from "./CreateCards/CreateCard.js";
+import { CardElement, SetCard } from "./CreateCards/CreateCard.js";
 import { GetCardList, GetBanList, GetCardSetList } from "./API/GetAllCards.js";
 
 const tcg_ban_list_container = document.querySelector("#ban-list-tcg");
@@ -23,7 +23,7 @@ export async function LoadBanListCards(ban_list, ban_list_container, sliced) {
       }
       const a_el = document.createElement("a");
       a_el.title = card.name;
-      a_el.innerHTML = CardElement(card);
+      a_el.innerHTML = CardElement(card, (card.id) ? card.id : "cardBack", "card");
       a_el.classList.add(ban_list_type);
       ban_list_container.appendChild(a_el);
     });
@@ -36,6 +36,7 @@ export async function LoadSetCards(container, sliced) {
   const loader = container.querySelector(".loader-container");
   const error_message = container.querySelector(".error-message");
   const list_data = await GetCardSetList();
+  console.log(list_data);
   loader.classList.add("hidden");
 
   if (Object.keys(list_data).includes("error")) {
@@ -44,10 +45,9 @@ export async function LoadSetCards(container, sliced) {
     const sliced_list = list_data.slice(0, sliced);
     console.log(sliced_list);
     sliced_list.forEach(card => {
-      const a_el = document.createElement("a");
-      a_el.title = card.name;
-      a_el.innerHTML = CardElement(card);
-      container.appendChild(a_el);
+      const div_el = document.createElement("div");
+      div_el.innerHTML = SetCard(card);
+      container.appendChild(div_el);
     });
   }
 }
