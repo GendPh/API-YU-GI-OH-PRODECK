@@ -7,18 +7,25 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // colors: {
+      //   'text': '#e3f7fd',
+      //   'text-secondary': '#abe1f6',
+      //   'background': '#031a21',
+      //   'background-secondary': '#145365',
+      //   'primary': '#c83806',
+      //   'primary-secondary': '#9b2c0d',
+      //   'secondary': '#063846',
+      //   'secondary-secondary': '#135466',
+      //   'accent': '#ed562c',
+      //   'accent-secondary': '#f07347',
+      // }
       colors: {
-        'text': '#e3f7fd',
-        'text-secondary': '#abe1f6',
-        'background': '#031a21',
-        'background-secondary': '#145365',
-        'primary': '#c83806',
-        'primary-secondary': '#9b2c0d',
-        'secondary': '#063846',
-        'secondary-secondary': '#135466',
-        'accent': '#ed562c',
-        'accent-secondary': '#f07347',
-      }
+        'text': '#f3eeeb',
+        'background': '#090705',
+        'primary': '#d1b9a5',
+        'secondary': '#775436',
+        'accent': '#b98356',
+      },
     },
   },
   plugins: [],

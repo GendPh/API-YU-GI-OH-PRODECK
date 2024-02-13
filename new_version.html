@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./src/TailwindCss/output.css">
+  <link rel="stylesheet" href="./src/Hamburguer/dist/hamburgers.min.css">
+  <title>API by YGOPRODeck</title>
+</head>
+
+<body class="bg-background">
+
+  <header class="text-text uppercase sticky top-0 wrapper items-center justify-between">
+    <figure class="wrapper items-center">
+      <img src="./src/Assets/logo.jpg" alt="Yu Gi Oh Logo" class="w-20">
+    </figure>
+
+    <button id="button-navbar-open" class="hamburger hamburger--3dx-r">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+
+    <nav id="main-navbar">
+      <button id="button-navbar-close" class="hamburger is-active hamburger--3dx-r">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <ul>
+        <li><a href="#" class="selected">Ban List</a></li>
+        <li><a href="#">Set Cards</a></li>
+        <li><a href="#">All Cards</a></li>
+        <li><a href="#">Newest Cards</a></li>
+        <li><a href="#">Speed Duel Cards</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main>
+    <section id="ban-list">
+      <article id="ban-list-tcg" class="card-container">
+
+      </article>
+      <article id="ban-list-ocg"></article>
+    </section>
+  </main>
+  <footer></footer>
+
+
+  <script src="./src/NavBarConfig/ToggleNavbar.js"></script>
+  <script type="module" src="./src/MainPageGenerateCards.js"></script>
+</body>
+
+</html>

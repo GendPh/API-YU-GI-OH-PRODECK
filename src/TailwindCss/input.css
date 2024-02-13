@@ -1,0 +1,38 @@
+/* npx tailwindcss -i ./src/TailwindCss/input.css -o ./src/TailwindCss/output.css --watch */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+header,
+main {
+  @apply p-5;
+}
+
+.wrapper {
+  @apply flex gap-5;
+}
+
+#main-navbar {
+  @apply fixed inset-0 left-[35%] bg-secondary pt-10 flex flex-col items-end translate-x-full transition-all duration-200;
+}
+
+#main-navbar ul {
+  @apply flex flex-col pt-10 gap-2 w-full;
+}
+#main-navbar ul a {
+  @apply block w-full py-10 px-5 cursor-pointer hover:bg-background transition-all duration-200;
+}
+#main-navbar ul a.selected {
+  @apply bg-background;
+}
+#button-navbar-close {
+  @apply pe-5;
+}
+#main-navbar.is-open {
+  @apply translate-x-0;
+}
+
+.card-container {
+  @apply grid grid-cols-2 gap-2;
+}
