@@ -74,37 +74,12 @@ export async function GetCardList(url) {
   const paginatedObject = paginateObject(data, itemsPerPage);
   console.log(paginatedObject);
 }
-async function GetSpeedDuelCards(url) {
-  const data = await fetchApi(url);
-  const sliced_data = data.slice(0, 20);
-  console.log(sliced_data);
-}
-async function GetRushDuelCards(url) {
-  const data = await fetchApi(url);
-  const sliced_data = data.slice(0, 20);
-  console.log(sliced_data);
-}
-async function GetCardById(url) {
-  const json = await fetchApi(url);
-  const data = json.data;
-  console.log(data);
-}
-async function GetRandomCard(url) {
-  const data = await fetchApi(url);
-}
-async function GetAllCardSets(url) {
-  const data = await fetchApi(url);
-}
-async function GetCardSetInf(url) {
-  const data = await fetchApi(url);
-}
-async function GetCardByArchetype(url) {
-  const json = await fetchApi(url);
-  const data = json.data;
-  console.log(data);
-}
 
 export async function GetBanList(ban_list) {
   const json = await fetchApi(`https://db.ygoprodeck.com/api/v7/cardinfo.php?banlist=${ban_list}`);
+  return json;
+}
+export async function GetCardSetList() {
+  const json = await fetchApi(`https://db.ygoprodeck.com/api/v7/cardsets.php`);
   return json;
 }

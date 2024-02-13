@@ -7,11 +7,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding: 6rem;
+    scroll-padding: 8rem;
   }
 
-  main {
-    @apply py-5 px-10;
+  section {
+    @apply py-4 border-accent border-b-4;
   }
   a {
     cursor: pointer;
@@ -48,7 +48,7 @@
     @apply flex flex-col lg:flex-row pt-10 lg:pt-0 gap-2 w-full;
   }
   #main-navbar ul a {
-    @apply block text-xl lg:text-2xl w-full py-10 lg:py-5 border-accent px-5 cursor-pointer hover:bg-background lg:hover:bg-accent transition-all duration-200;
+    @apply block text-lg w-full py-10 lg:py-5 border-accent px-5 cursor-pointer hover:bg-background lg:hover:bg-accent transition-all duration-200;
   }
   #main-navbar ul a.selected {
     @apply bg-background lg:hover:bg-accent lg:border-b-2;
@@ -105,7 +105,7 @@
   .card-container a.Limited::before {
     background-image: url(../Assets/Svg/limited.svg);
   }
-  .card-container a.SemiLimited::before {
+  .card-container a.Semi-Limited::before {
     background-image: url(../Assets/Svg/semiLimited.svg);
   }
 

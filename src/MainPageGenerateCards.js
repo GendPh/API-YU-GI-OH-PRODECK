@@ -1,5 +1,5 @@
 import { CardElement } from "./CreateCards/CreateCard.js";
-import { GetCardList, GetBanList } from "./API/GetAllCards.js";
+import { GetCardList, GetBanList, GetCardSetList } from "./API/GetAllCards.js";
 
 const tcg_ban_list_container = document.querySelector("#ban-list-tcg");
 const ocg_ban_list_container = document.querySelector("#ban-list-ocg");
@@ -30,5 +30,28 @@ export async function LoadBanListCards(ban_list, ban_list_container, sliced) {
   }
 }
 
-LoadBanListCards("tcg", tcg_ban_list_container, 9);
-LoadBanListCards("ocg", ocg_ban_list_container, 9);
+const card_sets_container = document.querySelector("#card-set-container");
+
+export async function LoadSetCards(container, sliced) {
+  const loader = container.querySelector(".loader-container");
+  const error_message = container.querySelector(".error-message");
+  const list_data = await GetCardSetList();
+  loader.classList.add("hidden");
+
+  if (Object.keys(list_data).includes("error")) {
+    error_message.classList.remove("hidden");
+  } else {
+    const sliced_list = list_data.slice(0, sliced);
+    console.log(sliced_list);
+    sliced_list.forEach(card => {
+      const a_el = document.createElement("a");
+      a_el.title = card.name;
+      a_el.innerHTML = CardElement(card);
+      container.appendChild(a_el);
+    });
+  }
+}
+
+LoadBanListCards("tcg", tcg_ban_list_container, 6);
+LoadBanListCards("ocg", ocg_ban_list_container, 6);
+LoadSetCards(card_sets_container, 6);
