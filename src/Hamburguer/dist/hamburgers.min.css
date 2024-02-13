@@ -7,7 +7,6 @@
  */
 .hamburger {
   font: inherit;
-  display: inline-block;
   overflow: visible;
   margin: 0;
   cursor: pointer;

@@ -11,12 +11,13 @@
 
 <body class="bg-background">
 
-  <header class="text-text uppercase sticky top-0 wrapper items-center justify-between">
+  <header
+    class="sticky overflow-x-hidden top-0 text-text uppercase wrapper items-center justify-between z-50 bg-background px-10 py-2">
     <figure class="wrapper items-center">
       <img src="./src/Assets/logo.jpg" alt="Yu Gi Oh Logo" class="w-20">
     </figure>
 
-    <button id="button-navbar-open" class="hamburger hamburger--3dx-r">
+    <button id="button-navbar-open" class="hamburger hamburger--3dx-r lg:hidden">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
@@ -24,13 +25,13 @@
 
 
     <nav id="main-navbar">
-      <button id="button-navbar-close" class="hamburger is-active hamburger--3dx-r">
+      <button id="button-navbar-close" class="hamburger is-active hamburger--3dx-r lg:hidden">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
       <ul>
-        <li><a href="#" class="selected">Ban List</a></li>
+        <li><a href="#ban-list" class="selected">Ban List</a></li>
         <li><a href="#">Set Cards</a></li>
         <li><a href="#">All Cards</a></li>
         <li><a href="#">Newest Cards</a></li>
@@ -40,12 +41,49 @@
 
   </header>
 
-  <main>
+  <main class="text-text">
     <section id="ban-list">
-      <article id="ban-list-tcg" class="card-container">
+      <h2>Ban List</h2>
 
-      </article>
-      <article id="ban-list-ocg"></article>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div>
+          <div class="wrapper items-center justify-between my-6">
+            <h3>Tcg</h3>
+            <a class="btn-change-page" href="#">TCG Ban List</a>
+          </div>
+
+          <article id="ban-list-tcg" class="card-container">
+            <p class="error-message hidden">We're sorry, but we encountered an
+              issue
+              while trying to retrieve the
+              requested data. Please try again later. If the problem persists, feel free to contact our support team for
+              assistance.
+            </p>
+            <div class="wrapper items-center justify-center col-span-2 loader-container">
+              <span class="loader"></span>
+            </div>
+          </article>
+        </div>
+
+        <div>
+          <div class="wrapper items-center justify-between my-6">
+            <h3>OCG</h3>
+            <a class="btn-change-page" href="#">OCG Ban List</a>
+          </div>
+
+          <article id="ban-list-ocg" class="card-container">
+            <p class="error-message hidden">We're sorry, but we encountered an
+              issue
+              while trying to retrieve the
+              requested data. Please try again later. If the problem persists, feel free to contact our support team for
+              assistance.
+            </p>
+            <div class="wrapper items-center justify-center col-span-2 loader-container">
+              <span class="loader"></span>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
   </main>
   <footer></footer>

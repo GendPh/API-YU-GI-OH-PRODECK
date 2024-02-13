@@ -5,9 +5,11 @@ const navbar_links = document.querySelectorAll("#main-navbar ul a");
 
 navbar_button_open.addEventListener("click", () => {
   navbar_el.classList.add("is-open");
+  document.querySelector("body").classList.add("overflow-hidden");
 })
 navbar_button_close.addEventListener("click", () => {
   navbar_el.classList.remove("is-open");
+  document.querySelector("body").classList.remove("overflow-hidden");
 })
 
 
@@ -17,5 +19,7 @@ navbar_links.forEach(link => {
       all_links.classList.remove("selected");
     });
     link.classList.add("selected");
+    document.querySelector("body").classList.remove("overflow-hidden");
+    navbar_el.classList.remove("is-open");
   })
 });
