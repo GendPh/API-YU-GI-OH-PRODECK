@@ -1,5 +1,12 @@
-import { CardElement, SetCard } from "./CreateCards/CreateCard.js";
-import { GetCardList, GetBanList, GetCardSetList } from "./API/GetAllCards.js";
+import { CardElement } from "./CreateCards/CreateCard.js";
+import { GetCardList, GetBanList, GetCard } from "./API/GetAllCards.js";
+
+
+async function loadcard() {
+  const data = await GetCard(28958464);
+  console.log(data.data);
+}
+loadcard();
 
 const tcg_ban_list_container = document.querySelector("#ban-list-tcg");
 const ocg_ban_list_container = document.querySelector("#ban-list-ocg");
@@ -23,35 +30,34 @@ export async function LoadBanListCards(ban_list, ban_list_container, sliced) {
       }
       const a_el = document.createElement("a");
       a_el.title = card.name;
-      a_el.innerHTML = CardElement(card, (card.id) ? card.id : "cardBack", "card");
+      a_el.innerHTML = CardElement(card);
       a_el.classList.add(ban_list_type);
       ban_list_container.appendChild(a_el);
     });
   }
 }
 
-const card_sets_container = document.querySelector("#card-set-container");
 
-export async function LoadSetCards(container, sliced) {
+LoadBanListCards("tcg", tcg_ban_list_container, 6);
+LoadBanListCards("ocg", ocg_ban_list_container, 6);
+
+const all_cards_container = document.querySelector("#all-list");
+export async function LoadAllCardsList(container, sliced) {
   const loader = container.querySelector(".loader-container");
   const error_message = container.querySelector(".error-message");
-  const list_data = await GetCardSetList();
-  console.log(list_data);
+  const list_data = await GetCardList("https://db.ygoprodeck.com/api/v7/cardinfo.php");
   loader.classList.add("hidden");
 
   if (Object.keys(list_data).includes("error")) {
     error_message.classList.remove("hidden");
   } else {
     const sliced_list = list_data.slice(0, sliced);
-    console.log(sliced_list);
     sliced_list.forEach(card => {
-      const div_el = document.createElement("div");
-      div_el.innerHTML = SetCard(card);
-      container.appendChild(div_el);
+      const a_el = document.createElement("a");
+      a_el.title = card.name;
+      a_el.innerHTML = CardElement(card);
+      container.appendChild(a_el);
     });
   }
 }
-
-LoadBanListCards("tcg", tcg_ban_list_container, 6);
-LoadBanListCards("ocg", ocg_ban_list_container, 6);
-LoadSetCards(card_sets_container, 6);
+LoadAllCardsList(all_cards_container, 15);

@@ -11,7 +11,7 @@
   }
 
   section {
-    @apply py-4 border-accent border-b-4;
+    @apply pb-20 pt-10 border-accent border-b-4;
   }
   a {
     cursor: pointer;
@@ -41,7 +41,7 @@
   }
 
   #main-navbar {
-    @apply fixed lg:static inset-0 left-[35%] bg-secondary lg:bg-background pt-10 lg:pt-0 flex flex-col items-end translate-x-full lg:translate-x-0 transition-all duration-200;
+    @apply fixed pointer-events-auto lg:static inset-0 left-[35%] bg-secondary lg:bg-background pt-10 lg:pt-0 flex flex-col items-end translate-x-full lg:translate-x-0 transition-all duration-200;
   }
 
   #main-navbar ul {
@@ -61,7 +61,10 @@
   }
 
   .btn-change-page {
-    @apply block border-b-4 border-accent px-2 text-xl md:text-3xl relative;
+    @apply block border-b-4 border-accent px-2 text-xl md:text-3xl relative my-6;
+  }
+  .btn-change-page.end {
+    @apply w-fit ml-auto;
   }
   .btn-change-page::after {
     content: "";
@@ -109,6 +112,10 @@
   .card-container a.Semi-Limited::before {
     background-image: url(../Assets/Svg/semiLimited.svg);
     background-color: white;
+  }
+
+  .loader-container {
+    @apply wrapper items-center justify-center col-span-2 md:col-span-3;
   }
 
   .loader {

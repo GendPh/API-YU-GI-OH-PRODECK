@@ -32,7 +32,6 @@
       </button>
       <ul>
         <li><a href="#ban-list" class="selected">Ban List</a></li>
-        <li><a href="#">Set Cards</a></li>
         <li><a href="#">All Cards</a></li>
         <li><a href="#">Newest Cards</a></li>
         <li><a href="#">Speed Duel Cards</a></li>
@@ -47,7 +46,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div>
-          <div class="wrapper items-center justify-between my-6">
+          <div class="wrapper items-center justify-between">
             <h3>Tcg</h3>
             <a class="btn-change-page" href="#">TCG Ban List</a>
           </div>
@@ -59,14 +58,14 @@
               requested data. Please try again later. If the problem persists, feel free to contact our support team for
               assistance.
             </p>
-            <div class="wrapper items-center justify-center col-span-2 loader-container">
+            <div class="loader-container">
               <span class="loader"></span>
             </div>
           </article>
         </div>
 
         <div>
-          <div class="wrapper items-center justify-between my-6">
+          <div class="wrapper items-center justify-between">
             <h3>OCG</h3>
             <a class="btn-change-page" href="#">OCG Ban List</a>
           </div>
@@ -86,25 +85,26 @@
       </div>
     </section>
 
-    <section id="set-cards" class="border-b-0">
-      <h2>Card Sets</h2>
+    <section id="all-cards" class="border-b-0">
+      <h2>All Cards</h2>
 
-      <div class="wrapper justify-end my-6">
-        <a class="btn-change-page" href="#">Card Sets</a>
-      </div>
+      <a class="btn-change-page end" href="#">All Cards List</a>
 
-      <article id="card-set-container" class="card-container">
+      <article id="all-list" class="card-container lg:grid-cols-6">
         <p class="error-message hidden">We're sorry, but we encountered an
           issue
           while trying to retrieve the
           requested data. Please try again later. If the problem persists, feel free to contact our support team for
           assistance.
         </p>
-        <div class="wrapper items-center justify-center col-span-2 loader-container">
+        <div class="loader-container">
           <span class="loader"></span>
         </div>
       </article>
+      </div>
+      </article>
     </section>
+
   </main>
   <footer></footer>
 

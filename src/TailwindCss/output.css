@@ -453,8 +453,8 @@ section {
   border-bottom-width: 4px;
   --tw-border-opacity: 1;
   border-color: rgb(185 131 86 / var(--tw-border-opacity));
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 5rem;
+  padding-top: 2.5rem;
 }
 
 a {
@@ -636,6 +636,7 @@ h3 {
 }
 
 #main-navbar {
+  pointer-events: auto;
   position: fixed;
   inset: 0px;
   left: 35%;
@@ -739,6 +740,8 @@ h3 {
 
 .btn-change-page {
   position: relative;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   display: block;
   border-bottom-width: 4px;
   --tw-border-opacity: 1;
@@ -754,6 +757,12 @@ h3 {
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
+}
+
+.btn-change-page.end {
+  margin-left: auto;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .btn-change-page::after {
@@ -827,6 +836,20 @@ h3 {
 .card-container a.Semi-Limited::before {
   background-image: url(../Assets/Svg/semiLimited.svg);
   background-color: white;
+}
+
+.loader-container {
+  display: flex;
+  gap: 1.25rem;
+  grid-column: span 2 / span 2;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .loader-container {
+    grid-column: span 3 / span 3;
+  }
 }
 
 .loader {
@@ -926,16 +949,6 @@ h3 {
   margin-bottom: 1rem;
 }
 
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -950,10 +963,6 @@ h3 {
 
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.inline {
-  display: inline;
 }
 
 .flex {
@@ -972,10 +981,6 @@ h3 {
   height: 100vh;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .min-h-\[100vh\] {
   min-height: 100vh;
 }
@@ -990,10 +995,6 @@ h3 {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-full {
-  width: 100%;
 }
 
 .max-w-4xl {
@@ -1029,10 +1030,6 @@ h3 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -1047,10 +1044,6 @@ h3 {
 
 .items-stretch {
   align-items: stretch;
-}
-
-.justify-end {
-  justify-content: flex-end;
 }
 
 .justify-center {
@@ -1132,11 +1125,6 @@ h3 {
   --tw-bg-opacity: 0.95;
 }
 
-.object-contain {
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -1148,10 +1136,6 @@ h3 {
 
 .p-5 {
   padding: 1.25rem;
-}
-
-.p-3 {
-  padding: 0.75rem;
 }
 
 .px-10 {
@@ -1176,10 +1160,6 @@ h3 {
 
 .text-center {
   text-align: center;
-}
-
-.text-end {
-  text-align: end;
 }
 
 .text-3xl {
@@ -1345,5 +1325,9 @@ h3 {
 
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }

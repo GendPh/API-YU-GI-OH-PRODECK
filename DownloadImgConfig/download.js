@@ -3,22 +3,28 @@ const fs = require('fs');
 const path = require('path');
 
 // Define the output directory for downloaded images
-const outputDirectory = './setCards'; // Change this to the desired directory
+const outputDirectory = '../src/Assets/AllCards'; // Change this to the desired directory
 
 async function downloadImages(apiUrl) {
     try {
         const response = await axios.get(apiUrl);
-        const data = response.data;
-
+        const get = response.data;
+        const data = get.data;
         for (let i = 0; i < data.length; i++) {
-            const imageUrl = data[i].set_image;
+            // Set Cards
+            // const imageUrl = data[i].set_image;
+            // All Cards
+            const imageUrl = data[i].card_images[0].image_url;
 
             if (imageUrl) {
                 const imageResponse = await axios.get(imageUrl, { responseType: 'stream' });
-                const outputFilePath = path.join(outputDirectory, `${data[i].set_code}.jpg`);
-                
+                // All Cards
+                const outputFilePath = path.join(outputDirectory, `${data[i].id}.jpg`);
+                // Set Card 
+                // const outputFilePath = path.join(outputDirectory, `${data[i].set_code}.jpg`);
+
                 // Ensure the output directory exists
-                if (!fs.existsSync(outputDirectory)){
+                if (!fs.existsSync(outputDirectory)) {
                     fs.mkdirSync(outputDirectory);
                 }
 
@@ -34,6 +40,9 @@ async function downloadImages(apiUrl) {
 }
 
 // Example usage: API URL
-const apiUrl = 'https://db.ygoprodeck.com/api/v7/cardsets.php';
+// Set Cards
+// const apiUrl = 'https://db.ygoprodeck.com/api/v7/cardsets.php';
+// All Cards
+const apiUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
 
 downloadImages(apiUrl);

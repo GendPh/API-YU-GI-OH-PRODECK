@@ -63,27 +63,32 @@ function paginateObject(obj, itemsPerPage) {
   return paginatedObject;
 }
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 
 export async function GetCardList(url) {
   const json = await fetchApi(url);
-  const data = json.data;
+  const data = await shuffleArray(json.data);
+  return data;
   // const sliced_data = data.slice(0, 20);
   // console.log(sliced_data);
-
-  const itemsPerPage = 25; // Change this to adjust the number of items per page
-  const paginatedObject = paginateObject(data, itemsPerPage);
-  console.log(paginatedObject);
+  // const itemsPerPage = 25; // Change this to adjust the number of items per page
+  // const paginatedObject = paginateObject(data, itemsPerPage);
+  // console.log(paginatedObject);
 }
 
 export async function GetBanList(ban_list) {
   const json = await fetchApi(`https://db.ygoprodeck.com/api/v7/cardinfo.php?banlist=${ban_list}`);
   return json;
 }
-export async function GetCardSetList() {
-  try {
-    const json = await fetchApi(`https://db.ygoprodeck.com/api/v7/cardsets.php`);
-    return json;
-  } catch (er) {
-    return { "error": er };
-  }
+
+export async function GetCard(card) {
+  const json = await fetchApi(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${card}`);
+  return json;
 }
