@@ -4,210 +4,180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta author="Gabriel Ferreira">
-  <meta name="description"
-    content="This Projects is using the API from YUGIOH PRODECK and throw it i display all cards from it that can be filtred throw archetypes, types and levels. I display the ban list tcg and ocg">
-  <meta name="keywords" content="Yu-Gi-OH, API, Cards, BanList, tcg,ocg,banned,limited,semi-limited">
-  <link rel="stylesheet" href="./src/tailwindOutput.css">
-  <link rel="stylesheet" href="./src/Hamburguer/dist/hamburgers.css">
-  <link rel="stylesheet" href="./src/waterfall.css">
-
-  <title>Yu-Gi-Oh Pro Deck API</title>
-
+  <!-- Importing stylesheets -->
+  <link rel="stylesheet" href="./src/TailwindCss/output.css">
+  <link rel="stylesheet" href="./src/Hamburguer/dist/hamburgers.min.css">
+  <title>API by YGOPRODeck</title>
 </head>
 
 <body class="bg-background">
 
-  <header class="h-screen relative overflow-x-hidden flex flex-col justify-between ">
-    <img src="./public/yugioh2.jpeg" alt="background yugioh"
-      class="absolute inset-0 h-screen object-cover w-screen opacity-60 z-[-1]">
+  <!-- Header section -->
+  <header
+    class="sticky max-w-5xl mx-auto overflow-x-hidden top-0 text-text uppercase wrapper items-center justify-between z-50 bg-background px-10 py-2">
+    <!-- Logo -->
+    <figure class="wrapper items-center">
+      <img src="./src/Assets/logo.jpg" alt="Yu Gi Oh Logo" class="w-20">
+    </figure>
 
-    <nav class="flex items-center justify-between p-2 z-50" id="primary-navBar">
-      <div class="logo"><img src="./public/logo.jpg" alt="logo cards" class="w-20"></div>
+    <!-- Hamburger menu button -->
+    <button id="button-navbar-open" class="hamburger hamburger--3dx-r lg:hidden">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
 
-      <div class="md:hidden">
-        <button class="hamburger hamburger--3dx z-20">
-          <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-          </span>
-        </button>
-      </div>
-
-      <ul id="primary-navBar-ul"
-        class="fixed md:static inset-0 translate-x-[100%] md:translate-x-[0] bg-background md:bg-transparent bg-opacity-95 flex flex-col md:flex-row gap-5 items-center justify-evenly z-10">
-        <li class="text-3xl text-text"><a class="uppercase" href="#">Cards</a></li>
-        <li class="text-3xl text-text"><a class="uppercase" href="#">Ban list</a></li>
-        <li class="text-3xl text-text"><a class="uppercase" href="#">Shop</a></li>
+    <!-- Main navigation -->
+    <nav id="main-navbar">
+      <!-- Close button for mobile -->
+      <button id="button-navbar-close" class="hamburger is-active hamburger--3dx-r lg:hidden">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <!-- Navigation links -->
+      <ul>
+        <li><a href="#all-cards" class="selected">All Cards</a></li>
+        <li><a href="#newest-cards">Newest Cards</a></li>
+        <li><a href="#ban-list">Ban List</a></li>
+        <li><a href="#speed-duel">Speed Duel Cards</a></li>
       </ul>
     </nav>
-
-
-    <div class="text-center p-2 text-text flex-1 flex items-center flex-col justify-center gap-10">
-
-      <div>
-        <h1 class="text-3xl sm:text-5xl font-bold leading-10">Welcome to the World of Yu-Gi-Oh!</h1>
-        <h3 class="my-4 text-xl sm:text-3xl font-bold">This website is using the
-          <a href="https://ygoprodeck.com/api-guide/" class="underline text-accent" title="API YGO PRO Deck"
-            target="_blank">Yu-Gi-Oh! API by YGOPRODeck</a>
-        </h3>
-        <div class="flex items-center justify-center mt-5 gap-5 flex-wrap">
-          <a href="#" class="bg-secondary p-2 rounded-md shadow-sm shadow-accent text-lg">Search for a card</a>
-          <a href="#" class="bg-secondary-secondary p-2 rounded-md shadow-sm shadow-accent text-lg">Check for the latest
-            BanList</a>
-        </div>
-      </div>
-
-      <div id="lottie" class="w-52 md:w-60"></div>
-    </div>
-
-
   </header>
 
-  <main>
-    <section class="min-h-[100vh] p-5 max-w-4xl mx-auto">
-      <h2 class="text-text text-5xl text-center mb-4">All Cards</h2>
+  <!-- Main content section -->
+  <main class="text-text px-10">
+    <!-- All Cards section -->
+    <section id="all-cards">
+      <h2>All Cards</h2>
 
-      <div class="mb-4 grid grid-cols-1 gap-y-2 md:grid-cols-8 md:gap-x-2">
-        <div class="col-span-2 flex gap-2">
-          <button type="button"
-            class="bg-secondary flex-1 flex justify-center px-3 text-text opacity-50 pointer-events-none"
-            id="scrollLeftButton">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42z" />
-            </svg>
-            <button type="button"
-              class="bg-secondary flex-1 flex justify-center px-3 text-text opacity-50 pointer-events-none"
-              id="scrollLeftDoubleButton">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M18.29 17.29a.996.996 0 0 0 0-1.41L14.42 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L12.3 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.38.38 1.01.38 1.4-.01z" />
-                <path fill="currentColor"
-                  d="M11.7 17.29a.996.996 0 0 0 0-1.41L7.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L5.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.38.38 1.01.38 1.4-.01z" />
-              </svg>
-            </button>
-        </div>
-        <div id="buttonCardContainer"
-          class="col-span-3 md:col-span-4 flex items-stretch gap-2 overflow-x-scroll snap-x scroll-smooth">
+      <!-- Link to all cards list -->
+      <a class="btn-change-page end" href="#">All Cards List</a>
 
+      <!-- Container for cards -->
+      <article id="all-list" class="card-container lg:grid-cols-6">
+        <!-- Error message for failed data retrieval -->
+        <p class="error-message hidden">We're sorry, but we encountered an
+          issue
+          while trying to retrieve the
+          requested data. Please try again later. If the problem persists, feel free to contact our support team for
+          assistance.
+        </p>
+        <!-- Loader for loading state -->
+        <div class="loader-container lg:col-span-6">
+          <span class="loader"></span>
         </div>
-        <div class="col-span-2 flex gap-2">
-          <button id="scrollRightDoubleButton" type="button"
-            class="bg-secondary flex-1 flex justify-center px-3 text-text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M6.41 6L5 7.41L9.58 12L5 16.59L6.41 18l6-6z" />
-              <path fill="currentColor" d="m13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z" />
-            </svg>
-          </button>
-          <button type="button" class="bg-secondary flex-1 flex justify-center px-3 text-text" id="scrollRightButton">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.41z" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="mb-4 flex flex-wrap gap-2">
-        <div class="flex flex-col flex-1">
-          <label for="archetypes" class="text-text">Archetypes</label>
-          <select name="archetypes" id="archetypes" class="rounded-md bg-primary text-text">
-            <option value="">All</option>
-          </select>
-        </div>
-        <div class="flex flex-col flex-1">
-          <label for="typeCard" class="text-text">Type</label>
-          <select name="typeCard" id="typeCard" class="rounded-md bg-primary text-text">
-            <option value="">All</option>
-            <option value="Normal Monster">Normal</option>
-            <option value="Normal Tuner Monster">Normal Tuner</option>
-            <option value="Effect Monster">Effect</option>
-            <option value="Flip Effect Monster">Flip Effect</option>
-            <option value="Tuner Monster">Tuner</option>
-            <option value="Toon Monster">Toon</option>
-            <option value="Spirit Monster">Spirit</option>
-            <option value="Union Effect Monster">Union Effect</option>
-            <option value="Gemini Monster">Gemini</option>
-            <option value="Ritual Monster">Ritual Normal</option>
-            <option value="Ritual Effect Monster">Ritual</option>
-            <option value="Fusion Monster">Fusion</option>
-            <option value="Synchro Monster">Synchro</option>
-            <option value="XYZ Monster">XYZ</option>
-            <option value="Pendulum Normal Monster">Pendulum Normal</option>
-            <option value="Pendulum Effect Monster">Pendulum Effect</option>
-            <option value="Pendulum Tuner Effect Monster">Pendulum Tuner Effect</option>
-            <option value="Pendulum Flip Effect Monster">Pendulum Flip Effect</option>
-            <option value="Pendulum Effect Ritual Monster">Pendulum Effect Ritual</option>
-            <option value="Pendulum Effect Fusion Monster">Pendulum Fusion</option>
-            <option value="Synchro Pendulum Effect Monster">Pendulum Synchro</option>
-            <option value="XYZ Pendulum Effect Monster">Pendulum XYZ</option>
-            <option value="Link Monster">Link</option>
-            <option value="Spell Card">Spell</option>
-            <option value="Trap Card">Trap</option>
-            <option value="Skill Card">Skill</option>
-            <option value="Token">Token</option>
-          </select>
-        </div>
-        <div class="flex flex-col flex-1">
-          <label for="levelCard" class="text-text">Lvl/Rank/Markers</label>
-          <select name="levelCard" id="levelCard" class="rounded-md bg-primary text-text">
-            <option value="">All</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-        </div>
-      </div>
-      <div id="cardContainer" class="grid grid-cols-1 gap-4">
-        <div class="loader mx-auto opacity-0"></div>
-      </div>
-
+      </article>
     </section>
 
-    <section id="banList" class="min-h-[100vh] p-5 max-w-4xl mx-auto">
-      <h2 class="text-text text-5xl text-center mb-4">Ban List</h2>
+    <!-- Newest Cards section -->
+    <section id="newest-cards" class="border-b-0">
+      <h2 class="mb-8">Newest Cards</h2>
 
-      <div class="flex gap-1 mb-2" id="banListGenre">
-        <button type="button" class="flex-1 button button-primary text-xl">TCG</button>
-        <button type="button" class="flex-1 button button-secondary text-xl">OCG</button>
-      </div>
+      <!-- Container for newest cards -->
+      <article id="newest-list" class="card-container lg:grid-cols-6">
+        <!-- Error message for failed data retrieval -->
+        <p class="error-message hidden">We're sorry, but we encountered an
+          issue
+          while trying to retrieve the
+          requested data. Please try again later. If the problem persists, feel free to contact our support team for
+          assistance.
+        </p>
+        <!-- Loader for loading state -->
+        <div class="loader-container lg:col-span-6">
+          <span class="loader"></span>
+        </div>
+      </article>
+    </section>
 
-      <div class="flex gap-1 mb-6" id="banListType">
-        <button type="button" data-ban-list="Banned" class="flex-1 button button-primary">Banned</button>
-        <button type="button" data-ban-list="Limited" class="flex-1 button button-secondary">Limited</button>
-        <button type="button" data-ban-list="SemiLimited" class="flex-1 button button-secondary">Semi-Limited</button>
-      </div>
+    <!-- Ban List section -->
+    <section id="ban-list">
+      <h2>Ban List</h2>
 
-      <div id="banListContainer" class="grid grid-cols-1 gap-4">
-        <div class="loader mx-auto opacity-100 hidden"></div>
-      </div>
-      <div>
+      <!-- Grid for TCG and OCG ban lists -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- TCG ban list -->
+        <div>
+          <div class="wrapper items-center justify-between">
+            <h3>Tcg</h3>
+            <!-- Link to TCG ban list -->
+            <a class="btn-change-page" href="#">TCG Ban List</a>
+          </div>
+          <!-- Container for TCG ban list -->
+          <article id="ban-list-tcg" class="card-container">
+            <!-- Error message for failed data retrieval -->
+            <p class="error-message hidden">We're sorry, but we encountered an
+              issue
+              while trying to retrieve the
+              requested data. Please try again later. If the problem persists, feel free to contact our support team for
+              assistance.
+            </p>
+            <!-- Loader for loading state -->
+            <div class="loader-container lg:col-span-3">
+              <span class="loader"></span>
+            </div>
+          </article>
+        </div>
 
+        <!-- OCG ban list -->
+        <div>
+          <div class="wrapper items-center justify-between">
+            <h3>OCG</h3>
+            <!-- Link to OCG ban list -->
+            <a class="btn-change-page" href="#">OCG Ban List</a>
+          </div>
+          <!-- Container for OCG ban list -->
+          <article id="ban-list-ocg" class="card-container">
+            <!-- Error message for failed data retrieval -->
+            <p class="error-message hidden">We're sorry, but we encountered an
+              issue
+              while trying to retrieve the
+              requested data. Please try again later. If the problem persists, feel free to contact our support team for
+              assistance.
+            </p>
+            <!-- Loader for loading state -->
+            <div class="loader-container lg:col-span-3">
+              <span class="loader"></span>
+            </div>
+          </article>
+        </div>
       </div>
+    </section>
+
+    <!-- Speed Duel section -->
+    <section id="speed-duel">
+      <h2>Speed Duel</h2>
+
+      <!-- Link to all speed duel cards -->
+      <a class="btn-change-page end" href="#">All Speed Duel</a>
+
+      <!-- Container for speed duel cards -->
+      <article id="speed-duel-list" class="card-container lg:grid-cols-6">
+        <!-- Error message for failed data retrieval -->
+        <p class="error-message hidden">We're sorry, but we encountered an
+          issue
+          while trying to retrieve the
+          requested data. Please try again later. If the problem persists, feel free to contact our support team for
+          assistance.
+        </p>
+        <!-- Loader for loading state -->
+        <div class="loader-container">
+          <span class="loader"></span>
+        </div>
+      </article>
     </section>
   </main>
 
+  <!-- Footer section -->
+  <footer></footer>
 
-
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="./src/navBarUtils.js"></script>
-
-  <script type="module" src="./src/API/AllCardsFetch.js"></script>
-  <script type="module" src="./src/API/BanList.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-  <script src="./src/Lottie.js"></script>
-
+  <!-- CDN for GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Script for toggling the navigation menu -->
+  <script src="./src/NavBarConfig/ToggleNavbar.js"></script>
+  <!-- Main script for generating cards on the main page -->
+  <script type="module" src="./src/MainPageGenerateCards.js"></script>
 </body>
 
 </html>

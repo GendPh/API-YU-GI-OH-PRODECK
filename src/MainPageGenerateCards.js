@@ -1,62 +1,54 @@
-import { CardElement } from "./CreateCards/CreateCard.js";
-import { GetCardList, GetBanList, GetCard } from "./API/GetAllCards.js";
-
-async function loadcard() {
-  const data = await GetCard(66518509);
-  console.log(data.data);
-}
-
-loadcard();
-
-const tcg_ban_list_container = document.querySelector("#ban-list-tcg");
-const ocg_ban_list_container = document.querySelector("#ban-list-ocg");
-
-export async function LoadBanListCards(ban_list, ban_list_container, sliced) {
-  const loader = ban_list_container.querySelector(".loader-container");
-  const error_message = ban_list_container.querySelector(".error-message");
-  const list_data = await GetBanList(ban_list);
-  loader.classList.add("hidden");
-  if (Object.keys(list_data).includes("error")) {
-    error_message.classList.remove("hidden");
-  } else {
-    const sliced_list = list_data.data.slice(0, sliced);
-    sliced_list.forEach(card => {
-      let ban_list_type;
-      if (ban_list === "tcg") {
-        ban_list_type = (card.banlist_info.ban_tcg) ? card.banlist_info.ban_tcg : "";
-      } else {
-        ban_list_type = (card.banlist_info.ban_ocg) ? card.banlist_info.ban_ocg : "";
-      }
-      const a_el = document.createElement("a");
-      a_el.title = card.name;
-      a_el.innerHTML = CardElement(card);
-      a_el.classList.add(ban_list_type);
-      ban_list_container.appendChild(a_el);
-    });
-  }
-}
-
-
-LoadBanListCards("tcg", tcg_ban_list_container, 6);
-LoadBanListCards("ocg", ocg_ban_list_container, 6);
+import { LoadCards } from "./CreateCards/CreateCard.js";
+import { FetchApi } from "./API/FetchApi.js";
 
 const all_cards_container = document.querySelector("#all-list");
-export async function LoadAllCardsList(container, sliced) {
-  const loader = container.querySelector(".loader-container");
-  const error_message = container.querySelector(".error-message");
-  const list_data = await GetCardList("https://db.ygoprodeck.com/api/v7/cardinfo.php");
-  loader.classList.add("hidden");
+const newest_cards_container = document.querySelector("#newest-list");
+const tcg_ban_list_container = document.querySelector("#ban-list-tcg");
+const ocg_ban_list_container = document.querySelector("#ban-list-ocg");
+const speed_duel_container = document.querySelector("#speed-duel-list");
 
-  if (Object.keys(list_data).includes("error")) {
-    error_message.classList.remove("hidden");
+async function LoadCardList(container, url, sliced, shuffle_chose, ban_list) {
+  const result = await FetchApi(url);
+  let data;
+  if (shuffle_chose === "shuffle" && !Object.keys(result).includes("error")) {
+    data = shuffleArray(result.data);
+    data = data.slice(0, sliced);
+  } else if (shuffle_chose !== "shuffle" && !Object.keys(result).includes("error")) {
+    data = result.data.slice(0, sliced);
   } else {
-    const sliced_list = list_data.slice(0, sliced);
-    sliced_list.forEach(card => {
-      const a_el = document.createElement("a");
-      a_el.title = card.name;
-      a_el.innerHTML = CardElement(card);
-      container.appendChild(a_el);
-    });
+    data = result;
   }
+  LoadCards(container, data, ban_list);
 }
-LoadAllCardsList(all_cards_container, 15);
+function LoadNewestList() {
+  const date = new Date(); // Get the current date
+  const [year, month, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
+  const start_date = `${year}-${month - 1}-01`;
+  const end_date = `${year}-${month}-${day}`;
+
+  LoadCardList(newest_cards_container, `https://db.ygoprodeck.com/api/v7/cardinfo.php?&startdate=${start_date}&enddate=${end_date}`, 6, "no");
+}
+
+
+LoadCardList(all_cards_container, "https://db.ygoprodeck.com/api/v7/cardinfo.php", 6, "shuffle");
+LoadNewestList();
+LoadCardList(tcg_ban_list_container, "https://db.ygoprodeck.com/api/v7/cardinfo.php?banlist=tcg", 6, "shuffle", "tcg");
+LoadCardList(ocg_ban_list_container, "https://db.ygoprodeck.com/api/v7/cardinfo.php?banlist=ocg", 6, "shuffle", "ocg");
+LoadCardList(speed_duel_container, "https://db.ygoprodeck.com/api/v7/cardinfo.php?format=Speed Duel&type=Skill Card", 6, "shuffle");
+
+
+// async function loadcard() {
+//   const data = await GetCard(66518509);
+//   console.log(data.data);
+// }
+
+// loadcard();
+
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}

@@ -11,7 +11,7 @@
   }
 
   section {
-    @apply pb-20 pt-10 border-accent border-b-4;
+    @apply pb-20 pt-10 border-accent border-b-4 max-w-5xl mx-auto;
   }
   a {
     cursor: pointer;
@@ -80,14 +80,14 @@
   }
 
   .error-message {
-    @apply col-span-2 text-justify font-bold text-xl;
+    @apply col-span-2 md:col-span-3 lg:col-span-6 text-justify font-bold text-xl;
   }
   .card-container {
     @apply grid grid-cols-2 md:grid-cols-3 gap-2;
   }
 
   .card-container a {
-    @apply relative;
+    @apply relative opacity-0;
   }
   .card-container a::before {
     content: "";
