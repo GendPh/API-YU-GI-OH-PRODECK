@@ -1,11 +1,11 @@
 import { CardElement } from "./CreateCards/CreateCard.js";
 import { GetCardList, GetBanList, GetCard } from "./API/GetAllCards.js";
 
-
 async function loadcard() {
-  const data = await GetCard(28958464);
+  const data = await GetCard(66518509);
   console.log(data.data);
 }
+
 loadcard();
 
 const tcg_ban_list_container = document.querySelector("#ban-list-tcg");
@@ -16,7 +16,6 @@ export async function LoadBanListCards(ban_list, ban_list_container, sliced) {
   const error_message = ban_list_container.querySelector(".error-message");
   const list_data = await GetBanList(ban_list);
   loader.classList.add("hidden");
-
   if (Object.keys(list_data).includes("error")) {
     error_message.classList.remove("hidden");
   } else {
