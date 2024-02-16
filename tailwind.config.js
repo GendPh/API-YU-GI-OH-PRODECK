@@ -3,9 +3,11 @@
  */
 module.exports = {
   content: [
-    "./src/**/*.js",    // Paths to JavaScript files to be scanned for classes by PurgeCSS
-    "./src/API/*.js",   // Additional paths to JavaScript files
-    "*.html",           // Paths to HTML files to be scanned for classes by PurgeCSS
+    "./src/**/*.js",
+    "./src/API/*.js",
+    "./Card/*.html",
+    "./Card/*.js",
+    "*.html",
   ],
   theme: {
     extend: {

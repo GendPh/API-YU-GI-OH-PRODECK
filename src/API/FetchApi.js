@@ -38,17 +38,34 @@
   Get All Archetypes:"https://db.ygoprodeck.com/api/v7/archetypes.php";
 */
 
-export let FetchApi = async (url) => {
+export const FetchApi = async (url) => {
   try {
-    const response = await fetch(url);
-    const json = await response.json();
-    return json;
+    const response = await fetch(url);;
+    if (!response.ok) {
+      return { error: new Error(`Failed to fetch data from ${url}`) }
+    }
+    return await response.json();
   } catch (er) {
     return { error: er }
   }
 }
 
-function paginateObject(obj, itemsPerPage) {
+
+export function GetValueFromURL(parameterName) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const value = urlParams.get(parameterName);
+
+  // Ensure value is not null and is properly sanitized
+  if (value !== null && /^[a-zA-Z0-9]+$/.test(value)) {
+    return value;
+  } else {
+    // If the value is null or contains invalid characters, return a default value or handle the error appropriately
+    return { error: new Error('Invalid value') };
+  }
+}
+
+
+export function paginateObject(obj, itemsPerPage) {
   const keys = Object.keys(obj);
   const totalPages = Math.ceil(keys.length / itemsPerPage);
   const paginatedObject = {};
@@ -67,4 +84,12 @@ function paginateObject(obj, itemsPerPage) {
   }
 
   return paginatedObject;
+}
+
+export function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }

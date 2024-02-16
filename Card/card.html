@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../src/Hamburguer/dist/hamburgers.min.css">
+  <link rel="stylesheet" href="../src/TailwindCss/output.css">
+  <title>Card </title>
+</head>
+
+<body class="bg-background text-text">
+
+  <header
+    class="sticky max-w-5xl mx-auto overflow-x-hidden top-0 text-text uppercase wrapper items-center justify-between z-50 bg-background px-10 py-2">
+    <!-- Logo -->
+    <figure class="wrapper items-center">
+      <img src="../src/Assets/logo.jpg" alt="Yu Gi Oh Logo" class="w-20">
+    </figure>
+
+    <!-- Hamburger menu button -->
+    <button id="button-navbar-open" class="hamburger hamburger--3dx-r lg:hidden">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Main navigation -->
+    <nav id="main-navbar">
+      <!-- Close button for mobile -->
+      <button id="button-navbar-close" class="hamburger is-active hamburger--3dx-r lg:hidden">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <!-- Navigation links -->
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="#all-cards" class="selected">Card</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="px-10">
+    <section>
+      <h1 id="title" class="text-center text-2xl md:text-4xl text-balance">Card Title</h1>
+
+      <article class="grid md:grid-cols-2 gap-5 mt-5 relative">
+        <figure id="card-img" class="md:sticky md:top-0">
+        </figure>
+        <div class="wrapper flex-col text-lg md:text-xl lg:text-2xl">
+          <div class="wrapper flex-wrap items-center justify-between">
+            <p id="card-type">Type</p>
+            <p id="card-race">Race</p>
+          </div>
+          <p id="card-description" class="text-justify">Card Description</p>
+          <p class="text-accent text-xl uppercase font-bold">Card Sets</p>
+          <div id="card-info" class="grid grid-cols-2 gap-5">
+            
+          </div>
+          <div id="card-sets">
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="border-b-0">
+      <h2>Related Cards</h2>
+      <article id="card-related" class="grid grid-cols-3 md:grid-cols-4 gap-2 mt-5">
+        <!-- Error message for failed data retrieval -->
+        <p class="error-message hidden">We're sorry, but we encountered an
+          issue
+          while trying to retrieve the
+          requested data. Please try again later. If the problem persists, feel free to contact our support team for
+          assistance.
+        </p>
+        <!-- Loader for loading state -->
+        <div class="loader-container">
+          <span class="loader"></span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- CDN for GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="../src/NavBarConfig/ToggleNavbar.js"></script>
+  <script type="module" src="/Card/GetCard.js"></script>
+</body>
+
+</html>
