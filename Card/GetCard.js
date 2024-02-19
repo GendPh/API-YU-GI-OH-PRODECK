@@ -39,7 +39,7 @@ async function LoadCardInfo() {
       p_el.textContent = "No card sets associated";
       DOMElem.card_sets.appendChild(p_el);
     }
-    let related_cards = await FetchApi(URL + `?archetype=${result.archetype}`);
+    let related_cards = await FetchApi(URL + `?archetype=${(result.archetype)?result.archetype:"blue-eyes"}`);
     if (!related_cards.error) {
       related_cards = related_cards.data.filter(obj => obj.name !== result.name);
       related_cards = shuffleArray(related_cards);
@@ -47,8 +47,6 @@ async function LoadCardInfo() {
       LoadCards(DOMElem.card_related, related_cards);
     }
   }
-
-  console.log(result);
 }
 
 LoadCardInfo();

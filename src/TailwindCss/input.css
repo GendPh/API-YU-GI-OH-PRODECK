@@ -150,4 +150,28 @@
       transform: rotate(360deg);
     }
   }
+
+  ::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent; /* Background color of the scrollbar track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+    @apply bg-accent;
+  }
+
+  #page-buttons a {
+    @apply bg-secondary text-lg py-1 px-4 border-2 border-transparent rounded-md;
+  }
+  #page-buttons a.active {
+    @apply border-accent pointer-events-none;
+  }
+
+  #searchForm:focus-within + .card-container {
+    @apply grid;
+  }
 }

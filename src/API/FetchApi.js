@@ -15,7 +15,7 @@
     - you can choose by type like: &type=spell etc;
     Parameter type values{
       Main Deck Types: [Effect Monster, Flip Effect Monster, Flip Tuner Effect Monster, Gemini Monster, Normal Monster, Normal Tuner Monster, Pendulum Effect Monster, Pendulum Effect Ritual Monster, Pendulum Flip Effect Monster, Pendulum Normal Monster, Pendulum Tuner Effect Monster, Ritual Effect Monster, Ritual Monster, Spell Card, Spirit Monster, Toon Monster, Trap Card, Tuner Monster, Union Effect Monster],
-      Extra Deck Types: [Fusion Monster, Link Monster, Pendulum Effect Fusion Monster, Synchro Monster, Synchro Pendulum Effect Monster, Synchro Tuner Monster, XYZ Monster, XYZ Pendulum Effect Monster],
+      Extra Deck Types: [Fusion Monster, Link Monster, Pendulum Effect Fusion Monster, Synchro Monster, Synchro Pendulum Effect Monster, Synchro Tuner Monster, XYZ Monster, XYZ Pendulum Effect Monster,Skill Card, Token],
       Other Types: [Skill Card, Token],
     }
 
@@ -42,11 +42,11 @@ export const FetchApi = async (url) => {
   try {
     const response = await fetch(url);;
     if (!response.ok) {
-      return { error: new Error(`Failed to fetch data from ${url}`) }
+      return { error: "No Cards Collected!" }
     }
     return await response.json();
   } catch (er) {
-    return { error: er }
+    return { error: "No Cards Collected!" }
   }
 }
 
@@ -56,7 +56,7 @@ export function GetValueFromURL(parameterName) {
   const value = urlParams.get(parameterName);
 
   // Ensure value is not null and is properly sanitized
-  if (value !== null && /^[a-zA-Z0-9]+$/.test(value)) {
+  if (value !== null && value.length > 0) {
     return value;
   } else {
     // If the value is null or contains invalid characters, return a default value or handle the error appropriately
@@ -65,25 +65,19 @@ export function GetValueFromURL(parameterName) {
 }
 
 
-export function paginateObject(obj, itemsPerPage) {
-  const keys = Object.keys(obj);
-  const totalPages = Math.ceil(keys.length / itemsPerPage);
-  const paginatedObject = {};
+export function paginateObject(array, itemsPerPage) {
+  const totalPages = Math.ceil(array.length / itemsPerPage);
+  const paginatedArray = [];
 
   for (let i = 0; i < totalPages; i++) {
     const startIndex = i * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const pageKeys = keys.slice(startIndex, endIndex);
-    const pageObject = {};
-
-    pageKeys.forEach(key => {
-      pageObject[key] = obj[key];
-    });
-
-    paginatedObject[`page${i + 1}`] = pageObject;
+    const pageArray = array.slice(startIndex, endIndex);
+    paginatedArray.push(pageArray);
   }
 
-  return paginatedObject;
+  return paginatedArray;
+
 }
 
 export function shuffleArray(array) {

@@ -1,8 +1,24 @@
 export function CardElement(card) {
-  const imageUrl = card.card_images && card.card_images.length > 0 ? card.card_images[0].image_url : null;
-  const imageSrc = imageUrl ? `/src/Assets/card/${card.id}.jpg` : `src/Assets/card/cardBack.jpg`;
+  const imageSrc = `/src/Assets/card/${card.id}.jpg`;
+  const fallbackImageSrc = '/src/Assets/card/cardBack.jpg';
+
+  // Create an Image object to check if the image exists
+  const img = new Image();
+  img.src = imageSrc;
+
+  img.onerror = function () {
+    // If the image doesn't exist, replace it with the fallback image
+    const element = document.querySelector(`img[src="${imageSrc}"]`);
+    if (element) {
+      element.src = fallbackImageSrc;
+      element.alt = "Card Back"; // Optionally, change the alt text too
+    }
+  };
+
   return `<img src="${imageSrc}" alt="${card.name}" >`;
 }
+
+
 
 function CreateLinkCard(container, card, ban_list) {
   let ban_list_type;
@@ -27,6 +43,7 @@ export function LoadCards(container, data, ban_list) {
 
   if (data.error) {
     error_message.classList.remove("hidden");
+    error_message.textContent = data.error;
   } else {
     data.forEach(card => {
       CreateLinkCard(container, card, ban_list);

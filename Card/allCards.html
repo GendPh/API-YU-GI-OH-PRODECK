@@ -38,37 +38,50 @@
       <!-- Navigation links -->
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="#all-cards" class="selected">Card</a></li>
+        <li><a href="#all-cards" class="selected">All Cards</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="px-10">
-    <section>
-      <h1 id="title" class="text-center text-2xl md:text-4xl text-balance">Card Title</h1>
-
-      <article class="grid md:grid-cols-2 gap-5 mt-5 relative">
-        <figure id="card-img" class="md:sticky md:top-0">
-        </figure>
-        <div class="wrapper flex-col text-lg md:text-xl lg:text-2xl">
-          <div class="wrapper flex-wrap items-center justify-between">
-            <p id="card-type">Type</p>
-            <p id="card-race">Race</p>
-          </div>
-          <p id="card-description" class="text-justify">Card Description</p>
-          <p class="text-accent text-xl uppercase font-bold">Card Sets</p>
-          <div id="card-info" class="grid grid-cols-2 gap-5">
-
-          </div>
-          <div id="card-sets">
-          </div>
+    <section id="search-card">
+      <form id="searchForm" method="post">
+        <input type="search" id="searchInput" name="search" placeholder="Enter your search term..."
+          class="bg-transparent w-full border border-accent rounded-md text-lg indent-5 p-3">
+        <button type="submit" class="bg-secondary rounded-md block mx-auto p-5 w-[70%] mt-10">Search</button>
+      </form>
+      <article
+        class="card-container bg-secondary overflow-y-scroll max-h-80 hidden grid-cols-3 md:grid-cols-5 mt-5 lg:grid-cols-7 min-h-0 p-5"
+        id="card-search">
+        <!-- Loader for loading state -->
+        <div class="loader-container col-span-3 md:col-span-5 lg:col-span-10">
+          <span class="loader"></span>
         </div>
       </article>
     </section>
-
-    <section class="border-b-0">
-      <h2>Related Cards</h2>
-      <article id="card-related" class="grid grid-cols-3 md:grid-cols-4 gap-2 mt-5">
+    <section>
+      <h1 class="text-4xl text-center">All Cards</h1>
+      <div id="filters" class="my-10">
+        <div id="page-buttons" class="overflow-x-scroll wrapper items-center bg-transparent pb-5">
+        </div>
+        <div class="wrapper">
+          <form method="post">
+            <!-- Select element (dropdown) -->
+            <select id="archetype_select" name="archetype_select" class="bg-transparent">
+              <option value="" disabled selected>Choose a Archetype:</option>
+              <option value="">Clear</option>
+            </select>
+          </form>
+          <form method="post">
+            <!-- Select element (dropdown) -->
+            <select id="type_select" name="type_select" class="bg-transparent">
+              <option value="" disabled selected>Choose a Type:</option>
+              <option value="">Clear</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <article class="card-container grid-cols-3 md:grid-cols-5 lg:grid-cols-7 min-h-0" id="all-cards">
         <!-- Error message for failed data retrieval -->
         <p class="error-message hidden">We're sorry, but we encountered an
           issue
@@ -77,7 +90,7 @@
           assistance.
         </p>
         <!-- Loader for loading state -->
-        <div class="loader-container">
+        <div class="loader-container col-span-3 md:col-span-5 lg:col-span-10">
           <span class="loader"></span>
         </div>
       </article>
@@ -88,7 +101,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="../src/NavBarConfig/ToggleNavbar.js"></script>
-  <script type="module" src="/Card/GetCard.js"></script>
+  <script type="module" src="./LoadAllCards.js"></script>
 </body>
 
 </html>
