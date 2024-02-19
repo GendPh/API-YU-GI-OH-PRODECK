@@ -1106,6 +1106,10 @@ h3 {
   border-bottom-width: 0px;
 }
 
+.border-b {
+  border-bottom-width: 1px;
+}
+
 .border-accent {
   --tw-border-opacity: 1;
   border-color: rgb(237 86 44 / var(--tw-border-opacity));

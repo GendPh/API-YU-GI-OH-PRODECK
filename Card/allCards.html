@@ -59,12 +59,12 @@
         </div>
       </article>
     </section>
-    <section>
+    <section class="border-b-0">
       <h1 class="text-4xl text-center">All Cards</h1>
       <div id="filters" class="my-10">
         <div id="page-buttons" class="overflow-x-scroll wrapper items-center bg-transparent pb-5">
         </div>
-        <div class="wrapper">
+        <div class="wrapper items-center justify-between flex-wrap mt-10">
           <form method="post">
             <!-- Select element (dropdown) -->
             <select id="archetype_select" name="archetype_select" class="bg-transparent">
@@ -76,6 +76,13 @@
             <!-- Select element (dropdown) -->
             <select id="type_select" name="type_select" class="bg-transparent">
               <option value="" disabled selected>Choose a Type:</option>
+              <option value="">Clear</option>
+            </select>
+          </form>
+          <form method="post">
+            <!-- Select element (dropdown) -->
+            <select id="race_select" name="race_select" class="bg-transparent">
+              <option value="" disabled selected>Choose a Race:</option>
               <option value="">Clear</option>
             </select>
           </form>
@@ -102,6 +109,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="../src/NavBarConfig/ToggleNavbar.js"></script>
   <script type="module" src="./LoadAllCards.js"></script>
+  <script type="module" src="./SelectConfig.js"></script>
+  <script type="module" src="./SearchConfig.js"></script>
 </body>
 
 </html>
